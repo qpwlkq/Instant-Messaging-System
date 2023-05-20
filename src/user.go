@@ -34,7 +34,7 @@ func (this *User) ListenMessage() {
 		msg := <-this.C
 		
 		fmt.Println("3")
-		this.conn.Write([]byte(msg))
+		this.conn.Write([]byte(msg + "\n"))
 		fmt.Println("4")
 	}
 }

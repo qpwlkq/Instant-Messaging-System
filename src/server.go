@@ -46,7 +46,7 @@ func (this *Server) ListenMessager() {
 func (this *Server) BroadCast(user *User, msg string) {
 	sendMsg := "[" + user.Addr +"]" + user.Name + ":" + msg
 	this.Message <- sendMsg
-
+	
 }
 
 
@@ -63,7 +63,7 @@ func (this *Server) Handler(conn net.Conn) {
 
 	fmt.Println("1")
 
-	this.BroadCast(user, "已上线")
+	this.BroadCast(user, "user online")
 
 	fmt.Println("2")
 	// 阻塞
@@ -73,7 +73,7 @@ func (this *Server) Handler(conn net.Conn) {
 // 启动服务器的接口
 func (this *Server) Start() {
 	// socket listen
-	listener, err := net.Listen("tcp", fmt.Sprintf("%s:%d", this.Ip, this.Port))
+	listener, err := net.Listen("tcp4", fmt.Sprintf("%s:%d", this.Ip, this.Port))
 	if err != nil {
 		fmt.Println("net.Listen err:", err)
 		return
